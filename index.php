@@ -1,104 +1,76 @@
-<!DOCTYPE html>
 <?php
-
-		require_once('conn.php');
-		$msg="";
-		
-		if(isset($_POST['submit']))
-		{
-			$unm=trim($_POST['uname']);
-			$pass=trim($_POST['password']);
-			$query="select * from admin";
-			$result=mysqli_query($link,$query);
-			$row=mysqli_fetch_assoc($result);
-			$dbunm=$row['username'];
-			$dbpass=$row['password'];
-			if(mysqli_error($link))
-			{
-				echo mysqli_error($link);
-				exit;
-			}
-			else
-			{
-				
-				//if(password_verify($pass,$dbpass) && $unm==$dbunm) 
-				//{
-					session_start();
-					$_SESSION['id']=$row['id'];
-					$_SESSION['uname']=$row['username'];
-					header('Location:adminHome.php');
-				}
-				//else
-				//{
-					//$msg="<p style='padding:8px'>Username and Password is incorrect..</p>";
-					//header('Location:adminHome.php');
-				//}
-			
-			
-		}
-
-?>
-
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Admin Login</title>
-		<link href="../images/icon.png" rel="icon">
-		<link href="../css/bootstrap.min.css" rel="stylesheet">
-		<link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet">
-		<link href="style.css" rel="stylesheet">
-	</head>
-
-	<body>
-	
-		
-		<nav class="navbar navbar-inverse top-menu">
-		  <div class="container-fluid">
-			<div class="navbar-header">
-			  <a class="navbar-brand" href="#">Art Gallery</a>
-			</div>
-			<div>
-			  <ul class="nav navbar-nav">
-				<li><a href="#">About</a></li>
-			  </ul>
-				<ul class="nav navbar-nav navbar-right">
-				<li><a href="registration.php"><span class="glyphicon glyphicon-user"></span> Registration</a><li>
-				<li><a href="#" style="color:#fff"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-			  </ul>
+	$page="index";
+	$title="Home";
+	require_once('header.php');
+?>		
+		<div class="container-fluid">
+		  <div class="row slider">
+			<div class="col-lg-14">			
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				  <ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+				  </ol>
+				  <div class="carousel-inner" role="listbox">
+					<div class="item active">
+					  <img src="images/1.jpg" alt="Chania">
+					</div>
+					<div class="item">
+					  <img src="images/2.jpg" alt="Chania">
+					</div>
+					<div class="item">
+					  <img src="images/3.jpg" alt="Flower">
+					</div>
+				  </div>
+				  
+				  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				  </a>
+				  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				  </a>
+				</div>
 			</div>
 		  </div>
-		</nav>
-		<div class="container">
-			<div class="panel panel-primary admin-login">
-				<div class="panel-heading">
-					<h3>Login</h3>
-				</div>
-				<div class="panel-body">
-					<form class="form-horizontal" role="form" method="post">
-					  <div class="bg-danger error_msg"><?php echo $msg; ?></div>
-					  <div class="form-group input-group">
-							<span class="input-group-addon glyphicon glyphicon-envelope" style="top:0"></span><input type="email" name="uname" class="form-control"placeholder="Enter email">
-					  </div>
-					  <div class="form-group input-group">
-							<span class="input-group-addon glyphicon glyphicon-lock" style="top:0"></span><input type="password" name="password" class="form-control" placeholder="Enter password">
-					  </div>
-					  
-					  <div class="form-group"> 
-						  <button type="submit" name="submit" class="btn btn-primary btn-block">Login</button>
-					  </div>
-					</form>
-				</div>
-			</div>
-		</div>
-		<?php
-			require_once('dbconclose.php');
-		?>
 		
-	</body>
-</html>
+		  <div class="row home_info">
+			<div class="col-md-9 recent_product">
+                <div class="panel panel-default">
+				    <div class="panel-heading">Recent Products</div>
+				        <div class="panel-body">
+                            <div class="container recent_product_container">
+                              <div class="row recent_img">
+                                <div class="col-md-4"><img src="images/Taj%20Mahal.jpeg" class="img-thumbnail home_img" alt="Cinque Terre"></div>
+                                <div class="col-md-4"><img src="images/Mona%20Lisa.png" class="img-thumbnail home_img" alt="Cinque Terre"></div>
+                                <div class="col-md-4"><img src="images/Krishna%20with%20Gopi's.Jpg" class="img-thumbnail home_img" alt="Cinque Terre"></div>
+                              </div>
+                                <div class="row recent_img_desc">
+                                    <div class="col-md-4">Taj Mahal</div>
+                                    <div class="col-md-4">Mona Lisa</div>
+                                    <div class="col-md-4">Krishna with Gopi's</div>
+                                </div>
+                                <div class="row recent_img_desc">
+                                    <div class="col-md-4"><button type="button" class="btn-add-cart">Add Cart</button></div>
+                                    <div class="col-md-4"><button type="button" class="btn-add-cart">Add Cart</button></div>
+                                    <div class="col-md-4"><button type="button" class="btn-add-cart">Add Cart</button></div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+			</div>
+			<div class="col-md-3 my_cart">
+				<h3>MyCart</h3>
+				<div class="cart_items">
+					<ol>
+                        <li><img src="images/Taj%20Mahal.jpeg" alt="Taj Mahal" class="my_cart_items"> <span class="my_cart_items_title">Taj Mahal</span> <span class="my_cart_items_price">Rs. 250</span></li>
+                    </ol>
+				</div>
+			</div>	
+		  </div>
+<?php
 
-
-
-
+	require('footer.php');
+?>	
